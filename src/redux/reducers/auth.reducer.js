@@ -23,6 +23,7 @@ const authReducer = (state = initialState, action) => {
         loading: false,
         isAuthenticated: true,
       };
+
     case types.LOGIN_FAILURE:
     case types.REGISTER_FAILURE:
     case types.GET_CURRENT_USER_FAILURE:
@@ -40,6 +41,16 @@ const authReducer = (state = initialState, action) => {
         loading: false,
         isAuthenticated: true,
       };
+      
+    case types.LOGOUT:
+      return {
+        ...state,
+        accessToken: null,
+        isAuthenticated: false,
+        user: null,
+        loading: false,
+      };
+
     default:
       return state;
   }

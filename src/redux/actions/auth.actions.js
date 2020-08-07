@@ -38,8 +38,16 @@ const getCurrentUser = (accessToken) => async (dispatch) => {
   }
 };
 
+const logout = () => (dispatch) => {
+  delete api.defaults.headers.common["authorization"];
+  localStorage.setItem("accessToken", "");
+  dispatch({ type: types.LOGOUT, payload: null });
+};
+
+
 export const authActions = {
   loginRequest,
   register,
   getCurrentUser,
+  logout,
 };
