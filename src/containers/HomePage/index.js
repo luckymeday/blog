@@ -19,7 +19,7 @@ const HomePage = () => {
   }, [dispatch]);
 
   const handleClickOnBlog = (id) => {
-    history.push(`/blog/${id}`);
+    history.push(`/blogs/${id}`);
   };
 
   return (

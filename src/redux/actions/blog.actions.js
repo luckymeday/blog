@@ -3,6 +3,7 @@ import api from "../api";
 import { alertActions } from "./alert.actions";
 
 const blogsRequest = () => async (dispatch) => {
+  console.log('*--- blogsRequest ---*')
   dispatch({ type: types.BLOG_REQUEST, payload: null });
   try {
     const res = await api.get("/blogs");
@@ -41,6 +42,7 @@ const createReview = (blogId, reviewText) => async (dispatch) => {
 };
 
 const createNewBlog = (title, content) => async (dispatch) => {
+  console.log('*--- createNewBlog ---*')
   dispatch({ type: types.CREATE_BLOG_REQUEST, payload: null });
   try {
     const formData = new FormData();

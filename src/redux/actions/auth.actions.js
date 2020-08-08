@@ -8,6 +8,7 @@ const loginRequest = (email, password) => async (dispatch) => {
     const res = await api.post("/auth/login", { email, password });
     const name = res.data.data.name;
     dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
+    api.defaults.headers.common["authorization"] = 'Bearer ' + res.data.accessToken;
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
