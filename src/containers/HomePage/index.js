@@ -5,6 +5,7 @@ import { blogActions } from "../../redux/actions";
 import BlogCard from "../../components/BlogCard";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useHistory, Link } from "react-router-dom";
+import ListPagination from "../../components/ListPagination";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ const HomePage = () => {
                 )}
             </>
           )}
+        <ListPagination />
       </Container>
     </>
   );

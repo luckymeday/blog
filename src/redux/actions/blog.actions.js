@@ -6,7 +6,7 @@ const blogsRequest = () => async (dispatch) => {
   console.log('*--- blogsRequest ---*')
   dispatch({ type: types.BLOG_REQUEST, payload: null });
   try {
-    const res = await api.get("/blogs");
+    const res = await api.get("/blogs?limit=9&page=1");
     dispatch({ type: types.BLOG_REQUEST_SUCCESS, payload: res.data.data });
   } catch (error) {
     dispatch({ type: types.BLOG_REQUEST_FAILURE, payload: error });

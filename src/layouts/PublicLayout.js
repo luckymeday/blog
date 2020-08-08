@@ -11,7 +11,11 @@ import BlogDetailPage from "../containers/BlogDetailPage";
 import PrivateRoute from "../containers/Routes/PrivateRoute";
 import AddEditBlogPage from "../containers/AddEditBlogPage";
 
+
+
 const PublicLayout = () => {
+
+
   return (
     <>
       <PublicNavbar />
@@ -25,6 +29,7 @@ const PublicLayout = () => {
           <PrivateRoute exact path="/blog/add" component={AddEditBlogPage} />
           <PrivateRoute exact path="/blog/edit/:id" component={AddEditBlogPage} />
           <Route component={NotFoundPage} />
+
         </Switch>
       </Container>
     </>
