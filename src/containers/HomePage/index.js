@@ -30,7 +30,7 @@ const HomePage = () => {
   }, [dispatch]);
   useEffect(() => {
     setTotalPageNum(Math.ceil(allBlogs.length / PAGE_LIMIT));
-  }); //ask why it only work without []
+  }, [allBlogs]); //ask why it only work without []
 
   useEffect(() => {
     dispatch(blogActions.displayBlogsRequest(pageNum, PAGE_LIMIT));
