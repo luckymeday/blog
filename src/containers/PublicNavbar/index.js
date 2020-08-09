@@ -16,30 +16,31 @@ const PublicNavbar = () => {
     dispatch(authActions.logout());
   };
   const authLinks = (
-    <Nav>
-      <Nav.Link as={Link} to="/dashboard">
+    <Nav className="border-red">
+      <Nav.Link as={Link} to="/dashboard" style={{ fontSize: "18px", fontFamily: "monospace", marginLeft: "8px" }}>
         <i className="fas fa-chart-line" /> Dashboard
       </Nav.Link>
-      <Nav.Link onClick={handleLogout}>
+      <Nav.Link onClick={handleLogout} style={{ fontSize: "18px", fontFamily: "monospace", marginLeft: "8px", marginRight: "8px" }}>
         <i className="fas fa-sign-out-alt" /> Logout
       </Nav.Link>
     </Nav>
   );
   const publicLinks = (
-    <Nav>
-      <Nav.Link as={Link} to="/register">
+    <Nav className="border-red">
+      <Nav.Link as={Link} to="/register" style={{ fontSize: "18px", fontFamily: "monospace", marginLeft: "8px" }}>
         <i className="fas fa-registered" /> Register
       </Nav.Link>
-      <Nav.Link as={Link} to="/login">
+      <Nav.Link as={Link} to="/login" style={{ fontSize: "18px", fontFamily: "monospace", marginLeft: "8px", marginRight: "8px" }}>
         <i className="fas fa-sign-in-alt" /> Login
       </Nav.Link>
     </Nav>
   );
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="md" className="border-red navbar-menu">
       <Navbar.Brand as={Link} to="/" className="mr-auto">
-        <img src={logo} alt="CoderSchool" />
+        <img src="http://magnifikstudio.com/wp-content/uploads/2017/07/product-placeholder-uai-720x960.jpg" alt="CoderSchool" width="70px" height="90px" className="nav-logo" />
+        <span style={{ fontSize: "35px", fontFamily: "monospace", marginLeft: "8px" }}>Exclusive Blog</span>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

@@ -48,31 +48,33 @@ const DashboardPage = () => {
   return (
     <>
       <PublicNavBar />
-      <Row className="body text-center justify-content-center ">
-        <div className="col-2">
-          <h1>My Profile</h1>
-          <Card style={{ width: "18rem" }}>
+      <Row className="body text-center justify-content-center dashboard" style={{ marginTop: "15px" }}>
+        <div className="col-2 border-red profile">
+          <h2>My Profile</h2>
+          <Card style={{ width: "100%", marginTop: "15%" }}>
             <Image
-              src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b1d334cf-9b96-4eb1-bc06-15f2997ac6b2/d89j4d2-eb772c02-e3b4-4ff4-b919-38f3e54f247e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYjFkMzM0Y2YtOWI5Ni00ZWIxLWJjMDYtMTVmMjk5N2FjNmIyXC9kODlqNGQyLWViNzcyYzAyLWUzYjQtNGZmNC1iOTE5LTM4ZjNlNTRmMjQ3ZS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.wY2OMHhmJgcaC4RahhfvL7WszzfW2dKiyVt7Xnvxho0"
+              src="https://pbs.twimg.com/media/Du7-G_zU8AEFGMa.jpg"
               roundedCircle
               alt="profile pic"
               style={{
-                maxHeight: "170px",
-                maxWidth: "170px",
+                height: "90px", width: "90px", marginTop: "10px"
               }}
             />
-            <Card.Body className="text-left">
-              <Card.Title>User.Name</Card.Title>
-              <Card.Text>User.description info</Card.Text>
+            <Card.Body className="text-center">
+              <Card.Title>Jeong Woo Ha</Card.Title>
+              <Card.Text>
+                <p style={{ fontSize: "15px" }}>currenlty in Saigon, Vietnam</p>
+                <p style={{ fontSize: "12px" }}>Traveler, Writer, Musician, Singer and Dreamer </p>
+              </Card.Text>
               <Button variant="dark" onClick={() => handleEditProfile()}>
-                Edit User description and image src
+                Edit
               </Button>
             </Card.Body>
           </Card>
         </div>
-        <div className="col-6">
-          <h1>My Blogs</h1>
-          <Container>
+        <div className="col-6 border-red" >
+          <h2>My Blogs</h2>
+          <Container >
             <PaginationBar
               pageNum={pageNum}
               totalPageNum={totalPageNum}
@@ -81,72 +83,73 @@ const DashboardPage = () => {
             {loading ? (
               <ClipLoader color="#f86c6b" size={150} loading={loading} />
             ) : (
-              <>
-                {blogs.length ? (
-                  <Card>
-                    {blogs.map((blog) => (
-                      <BlogCard
-                        blog={blog}
-                        key={blog._id}
-                        handleClick={handleClickOnBlog}
-                      />
-                    ))}
-                  </Card>
-                ) : (
-                  <p>There are no blogs</p>
-                )}
-              </>
-            )}
+                <>
+                  {blogs.length ? (
+                    <Card>
+                      {blogs.map((blog) => (
+                        <BlogCard
+                          blog={blog}
+                          key={blog._id}
+                          handleClick={handleClickOnBlog}
+                        />
+                      ))}
+                    </Card>
+                  ) : (
+                      <p>There are no blogs</p>
+                    )}
+                </>
+              )}
           </Container>
         </div>
-        <div className="col-2">
-          <h1>Friendlist</h1>
+        <div className="col-2 border-red">
+          <h2>Friends List</h2>
 
-          <InputGroup>
+          <InputGroup style={{ width: "100%", marginTop: "15%" }}>
             <InputGroup.Prepend>
               <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
             </InputGroup.Prepend>
-            <FormControl
-              placeholder="Search for Username"
+            <FormControl style={{ marginLeft: "-10px" }}
+              placeholder="Search friends"
               aria-label="Username"
               aria-describedby="basic-addon1"
             />
-            <Button href="#">Add Friend</Button>
+            <Button variant="dark" href="#" >Add</Button>
           </InputGroup>
-          <Card style={{ width: "18rem" }}>
+          <Card style={{ width: "100%" }}>
             <Card.Body>
-              <Card.Title>Pending Request</Card.Title>
+              <Card.Title style={{ marginBottom: "-15px", marginTop: "-10px" }}>Pending Request</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
               <ListGroupItem>
-                <img src="" alt="f-profile" />
-                waiting to be accepted 2 <Button>Confirm</Button>
+                <img src="" alt=" " />
+                waiting to be accepted  <Button variant="dark" style={{ fontSize: "13px" }}>Confirm</Button>
               </ListGroupItem>
               <ListGroupItem>
-                <img src="" alt="f-profile" />
-                waiting to be accepted 2 <Button>Confirm</Button>
+                <img src="" alt=" " />
+                waiting to be accepted  <Button variant="dark" style={{ fontSize: "13px" }}>Confirm</Button>
               </ListGroupItem>
             </ListGroup>
 
             <Card.Body>
-              <Card.Title>Friends</Card.Title>
+
+              <Card.Title style={{ marginBottom: "-10px", paddingTop: "30px" }}>My Friends List</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
               <ListGroupItem>
-                <img src="" alt="f-profile" />
+                <img src="" alt=" " />
                 friend 1{" "}
               </ListGroupItem>
               <ListGroupItem>
-                <img src="" alt="f-profile" />
+                <img src="" alt=" " />
                 friend 2{" "}
               </ListGroupItem>
               <ListGroupItem>
-                <img src="" alt="f-profile" />
+                <img src="" alt=" " />
                 friend 3{" "}
               </ListGroupItem>
             </ListGroup>
             <Card.Body>
-              <Card.Link href="#">LoadMore</Card.Link>
+              <Card.Link href="#">Load More</Card.Link>
             </Card.Body>
           </Card>
         </div>

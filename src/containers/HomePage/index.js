@@ -28,33 +28,33 @@ const HomePage = () => {
     <>
       <Container>
         <Jumbotron className="text-center">
-          <h1>Social Blog</h1>
-          <p>Write about your amazing experiences.</p>
+          <h1 style={{ fontSize: "55px", color: "white", fontFamily: "serif" }}>Exclusive Social Blog</h1>
+          <p style={{ fontSize: "23px", color: "white", fontFamily: "serif" }}>Write about your amazing experiences.</p>
           {isAuthenticated && (
             <Link to="/blog/add">
-              <Button variant="primary">Write now</Button>
+              <Button variant="dark" style={{ fontSize: "17px", fontFamily: "monospace" }}>Share your story</Button>
             </Link>
           )}
         </Jumbotron>
         {loading ? (
           <ClipLoader color="#f86c6b" size={150} loading={loading} />
         ) : (
-          <>
-            {blogs.length ? (
-              <CardColumns>
-                {blogs.map((blog) => (
-                  <BlogCard
-                    blog={blog}
-                    key={blog._id}
-                    handleClick={handleClickOnBlog}
-                  />
-                ))}
-              </CardColumns>
-            ) : (
-              <p>There are no blogs</p>
-            )}
-          </>
-        )}
+            <>
+              {blogs.length ? (
+                <CardColumns>
+                  {blogs.map((blog) => (
+                    <BlogCard
+                      blog={blog}
+                      key={blog._id}
+                      handleClick={handleClickOnBlog}
+                    />
+                  ))}
+                </CardColumns>
+              ) : (
+                  <p>There are no blogs</p>
+                )}
+            </>
+          )}
         <ListPagination />
       </Container>
     </>

@@ -65,7 +65,7 @@ const AddEditBlogPage = () => {
         <Col md={{ span: 6, offset: 3 }}>
           <Form onSubmit={handleSubmit}>
             <div className="text-center mb-3">
-              <h1 className="text-primary">{addOrEdit} blog</h1>
+              <h1 className="text-dark">{addOrEdit} blog</h1>
               <p className="lead">
                 <i className="fas fa-user" />
               </p>
@@ -94,7 +94,7 @@ const AddEditBlogPage = () => {
               {loading ? (
                 <Button
                   className="mr-3"
-                  variant="primary"
+                  variant="dark"
                   type="button"
                   disabled
                 >
@@ -106,10 +106,10 @@ const AddEditBlogPage = () => {
                   Submitting...
                 </Button>
               ) : (
-                <Button className="mr-3" type="submit" variant="primary">
-                  Submit
-                </Button>
-              )}
+                  <Button className="mr-3" type="submit" variant="dark">
+                    Submit
+                  </Button>
+                )}
               <Button variant="light" onClick={handleCancel} disabled={loading}>
                 Cancel
               </Button>

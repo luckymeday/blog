@@ -24,7 +24,7 @@ const ListPagination = () => {
 
   return (
     <>
-      <Pagination size="lg" className="justify-content-center">
+      <Pagination size="lg" className="justify-content-center pagination">
         <Pagination.Prev
           disabled={pageNum === 1}
           onClick={() => handleOnClickPrev()}

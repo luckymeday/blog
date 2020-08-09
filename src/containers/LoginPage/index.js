@@ -37,7 +37,7 @@ const LoginPage = () => {
         <Col md={{ span: 6, offset: 3 }}>
           <Form onSubmit={handleSubmit}>
             <div className="text-center mb-3">
-              <h1 className="text-primary">Sign In</h1>
+              <h1 className="text-dark">Sign In</h1>
               <p className="lead">
                 <i className="fas fa-user" /> Sign Into Your Account
               </p>
@@ -74,7 +74,7 @@ const LoginPage = () => {
             {loading ? (
               <Button
                 className="btn-block"
-                variant="primary"
+                variant="dark"
                 type="button"
                 disabled
               >
@@ -86,10 +86,10 @@ const LoginPage = () => {
                 Loading...
               </Button>
             ) : (
-              <Button className="btn-block" type="submit" variant="primary">
-                Login
-              </Button>
-            )}
+                <Button className="btn-block" type="submit" variant="dark">
+                  Login
+                </Button>
+              )}
             <p>
               Don't have an account? <Link to="/register">Sign Up</Link>
             </p>
