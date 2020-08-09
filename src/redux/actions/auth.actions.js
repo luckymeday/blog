@@ -8,12 +8,8 @@ const loginRequest = (email, password) => async (dispatch) => {
     const res = await api.post("/auth/login", { email, password });
     const name = res.data.data.name;
     dispatch(alertActions.setAlert(`Welcome back, ${name}`, "success"));
-<<<<<<< HEAD
     api.defaults.headers.common["authorization"] =
       "Bearer " + res.data.accessToken;
-=======
-    api.defaults.headers.common["authorization"] = 'Bearer ' + res.data.accessToken;
->>>>>>> d1a024e4a4b1c542cf1079cb32e1ace1c6d1ede1
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
@@ -53,7 +49,6 @@ const logout = () => (dispatch) => {
   localStorage.setItem("accessToken", "");
   dispatch({ type: types.LOGOUT, payload: null });
 };
-
 
 export const authActions = {
   loginRequest,
