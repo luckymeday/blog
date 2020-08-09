@@ -3,7 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "../../redux/actions/auth.actions"
+import { authActions } from "../../redux/actions/auth.actions";
 
 const PublicNavbar = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -12,6 +12,8 @@ const PublicNavbar = () => {
   const handleLogout = () => {
     dispatch(authActions.logout());
     // TODO: handle Logout
+
+    dispatch(authActions.logout());
   };
   const authLinks = (
     <Nav>

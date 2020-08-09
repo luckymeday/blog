@@ -13,7 +13,6 @@ const HomePage = () => {
   const blogs = useSelector((state) => state.blog.blogs);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   let history = useHistory();
-  console.log(blogs);
 
   useEffect(() => {
     dispatch(blogActions.blogsRequest(1));
@@ -22,7 +21,9 @@ const HomePage = () => {
   const handleClickOnBlog = (id) => {
     history.push(`/blogs/${id}`);
   };
-
+  console.log("1", blogs.blogs);
+  let test = blogs.blogs;
+  console.log("test", test);
   return (
     <>
       <Container>
@@ -38,18 +39,22 @@ const HomePage = () => {
         {loading ? (
           <ClipLoader color="#f86c6b" size={150} loading={loading} />
         ) : (
-            <>
-              {blogs.length ? (
-                <CardColumns>
-                  {blogs.map((blog) => (
-                    <BlogCard blog={blog} key={blog._id} handleClick={handleClickOnBlog} />
-                  ))}
-                </CardColumns>
-              ) : (
-                  <p>There are no blogs</p>
-                )}
-            </>
-          )}
+          <>
+            {blogs.length ? (
+              <CardColumns>
+                {blogs.map((blog) => (
+                  <BlogCard
+                    blog={blog}
+                    key={blog._id}
+                    handleClick={handleClickOnBlog}
+                  />
+                ))}
+              </CardColumns>
+            ) : (
+              <p>There are no blogs</p>
+            )}
+          </>
+        )}
         <ListPagination />
       </Container>
     </>

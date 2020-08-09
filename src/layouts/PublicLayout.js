@@ -23,9 +23,12 @@ const PublicLayout = () => {
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/blogs/:id" component={BlogDetailPage} />
           <PrivateRoute exact path="/blog/add" component={AddEditBlogPage} />
-          <PrivateRoute exact path="/blog/edit/:id" component={AddEditBlogPage} />
+          <PrivateRoute
+            exact
+            path="/blog/edit/:id"
+            component={AddEditBlogPage}
+          />
           <Route component={NotFoundPage} />
-
         </Switch>
       </Container>
     </>

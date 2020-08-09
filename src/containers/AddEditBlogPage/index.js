@@ -12,7 +12,6 @@ import { useHistory, useParams, Redirect } from "react-router-dom";
 import { blogActions } from "../../redux/actions";
 
 const AddEditBlogPage = () => {
-  console.log('*---- AddEditBlogPage ----*')
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -21,13 +20,13 @@ const AddEditBlogPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
-  console.log('params:', params)
+  console.log("params:", params);
   const selectedBlog = useSelector((state) => state.blog.selectedBlog);
   const redirectTo = useSelector((state) => state.blog.redirectTo);
   const addOrEdit = params.id ? "Edit" : "Add";
 
   useEffect(() => {
-    console.log('useEffect.addOrEdit:', addOrEdit)
+    console.log("useEffect.addOrEdit:", addOrEdit);
     if (addOrEdit === "Edit") {
       setFormData((formData) => ({
         ...formData,
@@ -107,10 +106,10 @@ const AddEditBlogPage = () => {
                   Submitting...
                 </Button>
               ) : (
-                  <Button className="mr-3" type="submit" variant="primary">
-                    Submit
-                  </Button>
-                )}
+                <Button className="mr-3" type="submit" variant="primary">
+                  Submit
+                </Button>
+              )}
               <Button variant="light" onClick={handleCancel} disabled={loading}>
                 Cancel
               </Button>
