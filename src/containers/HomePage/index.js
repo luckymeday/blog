@@ -16,7 +16,7 @@ const HomePage = () => {
   console.log(blogs);
 
   useEffect(() => {
-    dispatch(blogActions.blogsRequest());
+    dispatch(blogActions.blogsRequest(1));
   }, [dispatch]);
 
   const handleClickOnBlog = (id) => {

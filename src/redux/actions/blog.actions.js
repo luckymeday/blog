@@ -1,17 +1,32 @@
 import * as types from "../constants/blog.constants";
 import api from "../api";
 import { alertActions } from "./alert.actions";
+const pageLimit= 6;
 
-const blogsRequest = () => async (dispatch) => {
+const blogsRequest = (page) => async (dispatch) => {
   console.log('*--- blogsRequest ---*')
   dispatch({ type: types.BLOG_REQUEST, payload: null });
   try {
-    const res = await api.get("/blogs?limit=9&page=1");
-    dispatch({ type: types.BLOG_REQUEST_SUCCESS, payload: res.data.data });
+    const res = await api.get(`/blogs?page=${page}&limit=${pageLimit}`);
+    console.log('res.data:', res.data)
+    dispatch({ type: types.BLOG_REQUEST_SUCCESS, payload: { blogs: res.data.data, pageNum: page } });
   } catch (error) {
     dispatch({ type: types.BLOG_REQUEST_FAILURE, payload: error });
   }
 };
+
+// const getPaginationRequest = (pageNum, pageLimit) => async (dispatch) => {
+//   dispatch({ type: types.GET_PAGINATION_REQUEST, payload: null });
+//   try {
+//     const res = await api.get(`/blogs?page=${pageNum}&limit=${pageLimit}`);
+//     dispatch({
+//       type: types.GET_PAGINATION_REQUEST_SUCCESS,
+//       payload: res.data.data,
+//     });
+//   } catch (error) {
+//     dispatch({ type: types.GET_PAGINATION_REQUEST_FAILURE, payload: error });
+//   }
+// };
 
 const getSingleBlog = (blogId) => async (dispatch) => {
   dispatch({ type: types.GET_SINGLE_BLOG_REQUEST, payload: null });
@@ -100,4 +115,5 @@ export const blogActions = {
   createNewBlog,
   updateBlog,
   deleteBlog,
+  // getPagin ationRequest,
 };

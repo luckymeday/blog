@@ -9,6 +9,21 @@ const ReviewBlog = ({
 }) => {
     return (
         <Form onSubmit={handleSubmitReview}>
+
+            <Form.Group as={Row}>
+                <Form.Label htmlFor="review" column sm="2">
+                    Reaction:
+                </Form.Label>
+                <Col sm="8">
+                    <Form.Control
+                        id="review"
+                        type="text"
+                        value={reviewText}
+                        onClick={handleInputChange}
+                    />
+                </Col>
+            </Form.Group>
+
             <Form.Group as={Row}>
                 <Form.Label htmlFor="review" column sm="2">
                     Review:

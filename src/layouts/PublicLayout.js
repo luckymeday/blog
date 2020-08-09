@@ -11,11 +11,7 @@ import BlogDetailPage from "../containers/BlogDetailPage";
 import PrivateRoute from "../containers/Routes/PrivateRoute";
 import AddEditBlogPage from "../containers/AddEditBlogPage";
 
-
-
 const PublicLayout = () => {
-
-
   return (
     <>
       <PublicNavbar />
