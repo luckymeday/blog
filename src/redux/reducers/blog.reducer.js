@@ -6,6 +6,7 @@ const initialState = {
   loading: false,
   submitReviewLoading: false,
   displayBlogs: [],
+  selfBlogs: [],
 };
 
 const blogReducer = (state = initialState, action) => {
@@ -14,6 +15,7 @@ const blogReducer = (state = initialState, action) => {
     case types.BLOG_REQUEST:
     case types.GET_SINGLE_BLOG_REQUEST:
     case types.GET_DISPLAY_BLOG_REQUEST:
+    case types.GET_SELF_BLOG_REQUEST:
 
     case types.CREATE_BLOG_REQUEST:
     case types.UPDATE_BLOG_REQUEST:
@@ -24,13 +26,16 @@ const blogReducer = (state = initialState, action) => {
       return { ...state, blogs: payload, loading: false };
     case types.GET_DISPLAY_BLOG_REQUEST_SUCCESS:
       return { ...state, displayBlogs: payload, loading: false };
+
     case types.UPDATE_BLOG_SUCCESS:
     case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
       return { ...state, selectedBlog: payload, loading: false };
+    case types.GET_SELF_BLOG_REQUEST_SUCCESS:
+      return { ...state, selfBlogs: payload, loading: false };
 
     case types.BLOG_REQUEST_FAILURE:
     case types.GET_DISPLAY_BLOG_REQUEST_FAILURE:
-
+    case types.GET_SELF_BLOG_REQUEST_FAILURE:
     case types.GET_SINGLE_BLOG_REQUEST_FAILURE:
     case types.CREATE_BLOG_FAILURE:
     case types.CREATE_BLOG_SUCCESS:

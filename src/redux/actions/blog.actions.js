@@ -26,6 +26,18 @@ const displayBlogsRequest = (pageNum, PAGE_LIMIT) => async (dispatch) => {
   }
 };
 
+const getSelfBlog = () => async (dispatch) => {
+  dispatch({ type: types.GET_SELF_BLOG_REQUEST, payload: null });
+  try {
+    const res = await api.get(`/blogs/me`);
+    dispatch({
+      type: types.GET_SELF_BLOG_REQUEST_SUCCESS,
+      payload: res.data.data,
+    });
+  } catch (error) {
+    dispatch({ type: types.GET_SELF_BLOG_REQUEST_FAILURE, payload: error });
+  }
+};
 const getSingleBlog = (blogId) => async (dispatch) => {
   dispatch({ type: types.GET_SINGLE_BLOG_REQUEST, payload: null });
   try {
@@ -38,6 +50,7 @@ const getSingleBlog = (blogId) => async (dispatch) => {
     dispatch({ type: types.GET_SINGLE_BLOG_REQUEST_FAILURE, payload: error });
   }
 };
+
 const createReview = (blogId, reviewText) => async (dispatch) => {
   dispatch({ type: types.CREATE_REVIEW_REQUEST, payload: null });
   try {
@@ -111,4 +124,5 @@ export const blogActions = {
   updateBlog,
   deleteBlog,
   displayBlogsRequest,
+  getSelfBlog,
 };

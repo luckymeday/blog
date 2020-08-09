@@ -20,8 +20,7 @@ const DashboardPage = () => {
   const dispatch = useDispatch();
   let history = useHistory();
   const allBlogs = useSelector((state) => state.blog.blogs);
-  const blogs = useSelector((state) => state.blog.displayBlogs);
-
+  const blogs = useSelector((state) => state.blog.selfBlogs);
   const loading = useSelector((state) => state.blog.loading);
   const handleEditProfile = () => {
     alert("edit profile");
@@ -33,6 +32,7 @@ const DashboardPage = () => {
   const [totalPageNum, setTotalPageNum] = useState(1);
   const [pageNum, setPageNum] = useState(1);
   //pag
+
   useEffect(() => {
     dispatch(blogActions.blogsRequest());
     // setTotalPageNum(6);
@@ -42,7 +42,7 @@ const DashboardPage = () => {
   }, [allBlogs]); //ask why it only work without []
 
   useEffect(() => {
-    dispatch(blogActions.displayBlogsRequest(pageNum, PAGE_LIMIT));
+    dispatch(blogActions.getSelfBlog());
   }, [pageNum]);
   //pab
 
