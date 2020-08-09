@@ -54,7 +54,6 @@ const ListPagination = () => {
     //     blog.pageNum(page);
     // }
 
-
     const getPaginationRequest = (page) => {
         // console.log('pageNum:', pageNum)
         // console.log('totalPageNum:', totalPageNum)

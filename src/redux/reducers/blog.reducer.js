@@ -7,6 +7,7 @@ const initialState = {
   submitReviewLoading: false,
   pageNum: 1,
   totalPageNum: [],
+  reactions: {},
 };
 
 const blogReducer = (state = initialState, action) => {
@@ -14,6 +15,7 @@ const blogReducer = (state = initialState, action) => {
   switch (type) {
     case types.BLOG_REQUEST:
     case types.GET_SINGLE_BLOG_REQUEST:
+    case types.REACTION_REQUEST: //reaction
 
     case types.GET_PAGINATION_REQUEST: //pagination
 
@@ -31,7 +33,8 @@ const blogReducer = (state = initialState, action) => {
 
     case types.UPDATE_BLOG_SUCCESS:
     case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
-      return { ...state, selectedBlog: payload, loading: false };
+    case types.REACTION_REQUEST_SUCCESS: //reaction
+      return { ...state, selectedBlog: payload, reactions: payload.reactions, loading: false };
 
     case types.BLOG_REQUEST_FAILURE:
     case types.GET_PAGINATION_REQUEST_FAILURE: //pagination
@@ -41,6 +44,7 @@ const blogReducer = (state = initialState, action) => {
     case types.CREATE_BLOG_SUCCESS:
     case types.UPDATE_BLOG_FAILURE:
     case types.DELETE_BLOG_FAILURE:
+    case types.REACTION_REQUEST_FAILURE: //reaction
       return { ...state, loading: false };
 
     case types.DELETE_BLOG_SUCCESS:

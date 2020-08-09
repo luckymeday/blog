@@ -1,7 +1,7 @@
 import * as types from "../constants/blog.constants";
 import api from "../api";
 import { alertActions } from "./alert.actions";
-const pageLimit= 6;
+const pageLimit = 6;
 
 const blogsRequest = (page) => async (dispatch) => {
   console.log('*--- blogsRequest ---*')
@@ -108,6 +108,22 @@ const deleteBlog = (blogId) => async (dispatch) => {
   }
 };
 
+const updateReactions = (targetType, target, reaction, accessToken) => async (dispatch) => {
+  dispatch({ type: types.REACTION_REQUEST, payload: null });
+
+  if (accessToken) {
+    const bearerToken = "Bearer " + accessToken;
+    api.defaults.headers.common["authorization"] = bearerToken;
+  }
+  try {
+    const res = await api.post(`/reaction`, { targetType, target, reaction });
+    console.log('res.data:', res.data)
+    dispatch({ type: types.REACTION_REQUEST_SUCCESS, payload: res.data.reaction });
+  } catch (error) {
+    dispatch({ type: types.REACTION_REQUEST_FAILURE, payload: error });
+  }
+}
+
 export const blogActions = {
   blogsRequest,
   getSingleBlog,
@@ -115,5 +131,6 @@ export const blogActions = {
   createNewBlog,
   updateBlog,
   deleteBlog,
-  // getPagin ationRequest,
+  updateReactions
+  // getPaginationRequest,
 };
