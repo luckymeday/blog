@@ -9,6 +9,8 @@ import {
   Container,
   ListGroup,
   ListGroupItem,
+  InputGroup,
+  FormControl,
 } from "react-bootstrap";
 import BlogCard from "../../components/BlogCard";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -48,7 +50,7 @@ const DashboardPage = () => {
       <PublicNavBar />
       <Row className="body text-center justify-content-center ">
         <div className="col-2">
-          <h1>Profile</h1>
+          <h1>My Profile</h1>
           <Card style={{ width: "18rem" }}>
             <Image
               src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b1d334cf-9b96-4eb1-bc06-15f2997ac6b2/d89j4d2-eb772c02-e3b4-4ff4-b919-38f3e54f247e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYjFkMzM0Y2YtOWI5Ni00ZWIxLWJjMDYtMTVmMjk5N2FjNmIyXC9kODlqNGQyLWViNzcyYzAyLWUzYjQtNGZmNC1iOTE5LTM4ZjNlNTRmMjQ3ZS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.wY2OMHhmJgcaC4RahhfvL7WszzfW2dKiyVt7Xnvxho0"
@@ -99,11 +101,36 @@ const DashboardPage = () => {
         </div>
         <div className="col-2">
           <h1>Friendlist</h1>
+
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl
+              placeholder="Search for Username"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+            <Button href="#">Add Friend</Button>
+          </InputGroup>
           <Card style={{ width: "18rem" }}>
             <Card.Body>
-              <Card.Title>My Fam</Card.Title>
+              <Card.Title>Pending Request</Card.Title>
             </Card.Body>
-            <Button href="#">Add friend</Button>
+            <ListGroup className="list-group-flush">
+              <ListGroupItem>
+                <img src="" alt="f-profile" />
+                waiting to be accepted 2 <Button>Confirm</Button>
+              </ListGroupItem>
+              <ListGroupItem>
+                <img src="" alt="f-profile" />
+                waiting to be accepted 2 <Button>Confirm</Button>
+              </ListGroupItem>
+            </ListGroup>
+
+            <Card.Body>
+              <Card.Title>Friends</Card.Title>
+            </Card.Body>
             <ListGroup className="list-group-flush">
               <ListGroupItem>
                 <img src="" alt="f-profile" />
