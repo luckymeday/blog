@@ -9,27 +9,21 @@ import ListPagination from "../../components/ListPagination";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  let history = useHistory();
   const loading = useSelector((state) => state.blog.loading);
   const blogs = useSelector((state) => state.blog.blogs);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  let history = useHistory();
 
-  console.log(blogs);
   useEffect(() => {
     dispatch(blogActions.blogsRequest(1));
   }, [dispatch]);
-  useEffect(() => {
-    setTotalPageNum(Math.ceil(allBlogs.length / PAGE_LIMIT));
-  }, [allBlogs]); //ask why it only work without []
-
-  useEffect(() => {
-    dispatch(blogActions.displayBlogsRequest(pageNum, PAGE_LIMIT));
-  }, [pageNum]);
 
   const handleClickOnBlog = (id) => {
     history.push(`/blogs/${id}`);
   };
-
+  console.log("1", blogs.blogs);
+  let test = blogs.blogs;
+  console.log("test", test);
   return (
     <>
       <Container>
@@ -42,12 +36,6 @@ const HomePage = () => {
             </Link>
           )}
         </Jumbotron>
-
-        <PaginationBar
-          pageNum={pageNum}
-          totalPageNum={totalPageNum}
-          setPageNum={setPageNum}
-        />
         {loading ? (
           <ClipLoader color="#f86c6b" size={150} loading={loading} />
         ) : (

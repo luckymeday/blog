@@ -13,6 +13,7 @@ const blogsRequest = (page) => async (dispatch) => {
       type: types.BLOG_REQUEST_SUCCESS,
       payload: { blogs: res.data.data, pageNum: page },
     });
+    console.log("got data from blogRequest", res.data.data);
   } catch (error) {
     dispatch({ type: types.BLOG_REQUEST_FAILURE, payload: error });
   }

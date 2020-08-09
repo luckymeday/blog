@@ -19,9 +19,9 @@ const PAGE_LIMIT = 5;
 const DashboardPage = () => {
   const dispatch = useDispatch();
   let history = useHistory();
-  const allBlogs = useSelector((state) => state.blog.blogs);
   const blogs = useSelector((state) => state.blog.selfBlogs);
   const loading = useSelector((state) => state.blog.loading);
+
   const handleEditProfile = () => {
     alert("edit profile");
     return;
@@ -37,9 +37,6 @@ const DashboardPage = () => {
     dispatch(blogActions.blogsRequest());
     // setTotalPageNum(6);
   }, [dispatch]);
-  useEffect(() => {
-    setTotalPageNum(Math.ceil(allBlogs.length / PAGE_LIMIT));
-  }, [allBlogs]); //ask why it only work without []
 
   useEffect(() => {
     dispatch(blogActions.getSelfBlog());
@@ -72,7 +69,7 @@ const DashboardPage = () => {
           </Card>
         </div>
         <div className="col-6">
-          <h1>Blogs</h1>
+          <h1>My Blogs</h1>
           <Container>
             <PaginationBar
               pageNum={pageNum}

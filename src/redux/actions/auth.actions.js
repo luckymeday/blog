@@ -44,12 +44,6 @@ const logout = () => (dispatch) => {
   dispatch({ type: types.LOGOUT, payload: null });
 };
 
-const logout = () => (dispatch) => {
-  delete api.defaults.headers.common["authorization"];
-  localStorage.setItem("accessToken", "");
-  dispatch({ type: types.LOGOUT, payload: null });
-};
-
 export const authActions = {
   loginRequest,
   register,

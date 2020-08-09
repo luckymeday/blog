@@ -4,7 +4,7 @@ import Moment from "react-moment";
 import { useSelector } from "react-redux";
 
 const BlogCard = ({ blog, handleClick }) => {
-  // const reactions = useSelector((state) => state.blog.reactions)
+  const reactions = useSelector((state) => state.blog.reactions);
   return (
     <Card onClick={() => handleClick(blog._id)}>
       <Card.Img variant="top" src="https://via.placeholder.com/160x100" />

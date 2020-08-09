@@ -5,10 +5,8 @@ const initialState = {
   selectedBlog: {},
   loading: false,
   submitReviewLoading: false,
-  displayBlogs: [],
   selfBlogs: [],
   pageNum: 1,
-  totalPageNum: [],
   reactions: {},
 };
 
@@ -17,16 +15,22 @@ const blogReducer = (state = initialState, action) => {
   switch (type) {
     case types.BLOG_REQUEST:
     case types.GET_SINGLE_BLOG_REQUEST:
-    case types.GET_SELF_BLOG_REQUEST:
+    case types.GET_SELF_BLOG_REQUEST: //user
     case types.REACTION_REQUEST: //reaction
     case types.GET_PAGINATION_REQUEST: //pagination
 
     case types.CREATE_BLOG_REQUEST:
+    case types.UPDATE_BLOG_REQUEST:
     case types.DELETE_BLOG_REQUEST:
       return { ...state, loading: true };
 
     case types.BLOG_REQUEST_SUCCESS:
-      return { ...state, blogs: payload, loading: false };
+      return {
+        ...state,
+        blogs: payload.blogs,
+        pageNum: payload.pageNum,
+        loading: false,
+      };
 
     case types.UPDATE_BLOG_SUCCESS:
     case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
