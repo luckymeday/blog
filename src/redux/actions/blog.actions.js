@@ -1,28 +1,20 @@
 import * as types from "../constants/blog.constants";
 import api from "../api";
-
 import { alertActions } from "./alert.actions";
+const pageLimit = 6;
 
-const blogsRequest = () => async (dispatch) => {
+const blogsRequest = (page) => async (dispatch) => {
+  console.log("*--- blogsRequest ---*");
   dispatch({ type: types.BLOG_REQUEST, payload: null });
   try {
-    const res = await api.get(`/blogs?limit=1000`);
-    dispatch({ type: types.BLOG_REQUEST_SUCCESS, payload: res.data.data });
-  } catch (error) {
-    dispatch({ type: types.BLOG_REQUEST_FAILURE, payload: error });
-  }
-};
-
-const displayBlogsRequest = (pageNum, PAGE_LIMIT) => async (dispatch) => {
-  dispatch({ type: types.GET_DISPLAY_BLOG_REQUEST, payload: null });
-  try {
-    const res = await api.get(`/blogs?page=${pageNum}&limit=${PAGE_LIMIT}`);
+    const res = await api.get(`/blogs?page=${page}&limit=${pageLimit}`);
+    console.log("res.data:", res.data);
     dispatch({
-      type: types.GET_DISPLAY_BLOG_REQUEST_SUCCESS,
-      payload: res.data.data,
+      type: types.BLOG_REQUEST_SUCCESS,
+      payload: { blogs: res.data.data, pageNum: page },
     });
   } catch (error) {
-    dispatch({ type: types.GET_DISPLAY_BLOG_REQUEST_FAILURE, payload: error });
+    dispatch({ type: types.BLOG_REQUEST_FAILURE, payload: error });
   }
 };
 
@@ -38,6 +30,7 @@ const getSelfBlog = () => async (dispatch) => {
     dispatch({ type: types.GET_SELF_BLOG_REQUEST_FAILURE, payload: error });
   }
 };
+
 const getSingleBlog = (blogId) => async (dispatch) => {
   dispatch({ type: types.GET_SINGLE_BLOG_REQUEST, payload: null });
   try {
@@ -116,6 +109,27 @@ const deleteBlog = (blogId) => async (dispatch) => {
   }
 };
 
+const updateReactions = (targetType, target, reaction, accessToken) => async (
+  dispatch
+) => {
+  dispatch({ type: types.REACTION_REQUEST, payload: null });
+
+  if (accessToken) {
+    const bearerToken = "Bearer " + accessToken;
+    api.defaults.headers.common["authorization"] = bearerToken;
+  }
+  try {
+    const res = await api.post(`/reaction`, { targetType, target, reaction });
+    console.log("res.data:", res.data);
+    dispatch({
+      type: types.REACTION_REQUEST_SUCCESS,
+      payload: res.data.reaction,
+    });
+  } catch (error) {
+    dispatch({ type: types.REACTION_REQUEST_FAILURE, payload: error });
+  }
+};
+
 export const blogActions = {
   blogsRequest,
   getSingleBlog,
@@ -123,6 +137,8 @@ export const blogActions = {
   createNewBlog,
   updateBlog,
   deleteBlog,
-  displayBlogsRequest,
+
   getSelfBlog,
+  updateReactions,
+  // getPaginationRequest,
 };

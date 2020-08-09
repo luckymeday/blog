@@ -7,6 +7,9 @@ const initialState = {
   submitReviewLoading: false,
   displayBlogs: [],
   selfBlogs: [],
+  pageNum: 1,
+  totalPageNum: [],
+  reactions: {},
 };
 
 const blogReducer = (state = initialState, action) => {
@@ -14,18 +17,16 @@ const blogReducer = (state = initialState, action) => {
   switch (type) {
     case types.BLOG_REQUEST:
     case types.GET_SINGLE_BLOG_REQUEST:
-    case types.GET_DISPLAY_BLOG_REQUEST:
     case types.GET_SELF_BLOG_REQUEST:
+    case types.REACTION_REQUEST: //reaction
+    case types.GET_PAGINATION_REQUEST: //pagination
 
     case types.CREATE_BLOG_REQUEST:
-    case types.UPDATE_BLOG_REQUEST:
     case types.DELETE_BLOG_REQUEST:
       return { ...state, loading: true };
 
     case types.BLOG_REQUEST_SUCCESS:
       return { ...state, blogs: payload, loading: false };
-    case types.GET_DISPLAY_BLOG_REQUEST_SUCCESS:
-      return { ...state, displayBlogs: payload, loading: false };
 
     case types.UPDATE_BLOG_SUCCESS:
     case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
@@ -34,13 +35,38 @@ const blogReducer = (state = initialState, action) => {
       return { ...state, selfBlogs: payload, loading: false };
 
     case types.BLOG_REQUEST_FAILURE:
-    case types.GET_DISPLAY_BLOG_REQUEST_FAILURE:
+
     case types.GET_SELF_BLOG_REQUEST_FAILURE:
+      console.log("BLOG_REQUEST_SUCCESS.payload:", payload);
+      return {
+        ...state,
+        blogs: payload.blogs,
+        pageNum: payload.pageNum,
+        loading: false,
+      };
+
+    case types.GET_PAGINATION_REQUEST_SUCCESS: //pagination
+      return { ...state, pageNum: {}, totalPageNum: [], loading: false }; //pagination
+
+    case types.UPDATE_BLOG_SUCCESS:
+    case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
+    case types.REACTION_REQUEST_SUCCESS: //reaction
+      return {
+        ...state,
+        selectedBlog: payload,
+        reactions: payload.reactions,
+        loading: false,
+      };
+
+    case types.BLOG_REQUEST_FAILURE:
+    case types.GET_PAGINATION_REQUEST_FAILURE: //pagination
+
     case types.GET_SINGLE_BLOG_REQUEST_FAILURE:
     case types.CREATE_BLOG_FAILURE:
     case types.CREATE_BLOG_SUCCESS:
     case types.UPDATE_BLOG_FAILURE:
     case types.DELETE_BLOG_FAILURE:
+    case types.REACTION_REQUEST_FAILURE: //reaction
       return { ...state, loading: false };
 
     case types.DELETE_BLOG_SUCCESS:

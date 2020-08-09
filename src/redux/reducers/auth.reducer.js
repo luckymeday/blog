@@ -52,6 +52,18 @@ const authReducer = (state = initialState, action) => {
         loading: false,
         isAuthenticated: true,
       };
+<<<<<<< HEAD
+=======
+      
+    case types.LOGOUT:
+      return {
+        ...state,
+        accessToken: null,
+        isAuthenticated: false,
+        user: null,
+        loading: false,
+      };
+>>>>>>> d1a024e4a4b1c542cf1079cb32e1ace1c6d1ede1
 
     default:
       return state;

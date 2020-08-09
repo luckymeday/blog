@@ -20,11 +20,13 @@ const AddEditBlogPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
+  console.log("params:", params);
   const selectedBlog = useSelector((state) => state.blog.selectedBlog);
   const redirectTo = useSelector((state) => state.blog.redirectTo);
   const addOrEdit = params.id ? "Edit" : "Add";
 
   useEffect(() => {
+    console.log("useEffect.addOrEdit:", addOrEdit);
     if (addOrEdit === "Edit") {
       setFormData((formData) => ({
         ...formData,
@@ -33,7 +35,6 @@ const AddEditBlogPage = () => {
       }));
     }
   }, [addOrEdit, selectedBlog]);
-
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 

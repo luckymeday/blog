@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { blogActions } from "../redux/actions";
+import { useSelector } from "react-redux";
 
 const ReviewBlog = ({
   reviewText,
@@ -7,8 +10,51 @@ const ReviewBlog = ({
   handleSubmitReview,
   loading,
 }) => {
+  let reactionsBlog = useSelector((state) => state.blog.reactions);
+  const [reactions, setReactions] = useState(reactionsBlog);
+  const idBlog = useSelector((state) => state.blog.selectedBlog._id);
+  const dispatch = useDispatch();
+  const updateReactionRequest = (reaction) => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken && accessToken !== "undefined") {
+      let targetType = "Blog";
+      let target = idBlog;
+      dispatch(
+        blogActions.updateReactions(targetType, target, reaction, accessToken)
+      );
+      dispatch(blogActions.getSingleBlog(idBlog));
+      setReactions(reactionsBlog);
+    }
+  };
+
+  useEffect(() => {
+    // effect
+  }, [reactionsBlog]);
   return (
     <Form onSubmit={handleSubmitReview}>
+      <Form.Group as={Row}>
+        <Form.Label htmlFor="review" column sm="2">
+          Reaction:
+        </Form.Label>
+        <Col sm="8">
+          <Button variant="link" onClick={() => updateReactionRequest("haha")}>
+            Haha: {reactions.haha}
+          </Button>
+          <Button variant="link" onClick={() => updateReactionRequest("sad")}>
+            Sad: {reactions.sad}
+          </Button>
+          <Button variant="link" onClick={() => updateReactionRequest("like")}>
+            Like: {reactions.like}
+          </Button>
+          <Button variant="link" onClick={() => updateReactionRequest("love")}>
+            Love: {reactions.love}
+          </Button>
+          <Button variant="link" onClick={() => updateReactionRequest("angry")}>
+            Angry: {reactions.angry}
+          </Button>
+        </Col>
+      </Form.Group>
+
       <Form.Group as={Row}>
         <Form.Label htmlFor="review" column sm="2">
           Review:
