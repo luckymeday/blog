@@ -17,17 +17,33 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import PaginationBar from "../../components/Pagination";
-const PAGE_LIMIT = 5;
+import NameEditModal from '../../components/NameEditModal'
+import UpdateAvatarModal from '../../components/UpdateAvatarModal'
+
+// const PAGE_LIMIT = 5;
 const DashboardPage = () => {
   const dispatch = useDispatch();
   let history = useHistory();
   const blogs = useSelector((state) => state.blog.selfBlogs);
   const loading = useSelector((state) => state.blog.loading);
 
-  const handleEditProfile = () => {
-    alert("edit profile");
-    return;
-  };
+  const [showModalName, setShowModalName] = useState(false)
+  const [showModalAvatar, setShowModalAvatar] = useState(false)
+  const user = useSelector(state => state.auth.user)
+
+  // const handleEditProfile = () => {
+  //   alert("edit profile");
+  //   return;
+  // };
+
+  const handleOnClickName = () => {
+    setShowModalName(true)
+  }
+  const handleOnClickImage = () => {
+    console.log('handleOnClickImage')
+    setShowModalAvatar(true)
+  }
+
   const handleClickOnBlog = (id) => {
     history.push(`/blogs/${id}`);
   };
@@ -47,34 +63,54 @@ const DashboardPage = () => {
 
   return (
     <>
+      <NameEditModal
+        showModal={showModalName}
+        setShowModal={setShowModalName}
+      />
+      <UpdateAvatarModal
+        showModal={showModalAvatar}
+        setShowModal={setShowModalAvatar}
+        img={user.avatar.url}
+      />
       <PublicNavBar />
+
       <Row className="body text-center justify-content-center dashboard" style={{ marginTop: "15px" }}>
         <div className="col-2 border-red profile">
           <h2>My Profile</h2>
           <Card style={{ width: "100%", marginTop: "15%" }}>
             <Image
-              src="https://pbs.twimg.com/media/Du7-G_zU8AEFGMa.jpg"
+              src={user.avatar.url}
+              onClick={() => handleOnClickImage()}
               roundedCircle
-              alt="profile pic"
+              alt=""
               style={{
                 height: "90px", width: "90px", marginTop: "10px"
               }}
             />
             <Card.Body className="text-center">
-              <Card.Title>Jeong Woo Ha</Card.Title>
+              <Card.Title onClick={() => handleOnClickName()}>{user.name}</Card.Title>
               <Card.Text>
                 <p style={{ fontSize: "15px" }}>currenlty in Saigon, Vietnam</p>
                 <p style={{ fontSize: "12px" }}>Traveler, Writer, Musician, Singer and Dreamer </p>
               </Card.Text>
-              <Button variant="dark" onClick={() => handleEditProfile()}>
+
+
+              {/* <Button variant="dark" onClick={() => handleEditProfile()}>
                 Edit
-              </Button>
+              </Button> */}
+
+
+
+
+
+
+
             </Card.Body>
           </Card>
         </div>
         <div className="col-6 border-red" >
           <h2>My Blogs</h2>
-          <Container >
+          <Container style={{ marginTop: "15%" }} >
             <PaginationBar
               pageNum={pageNum}
               totalPageNum={totalPageNum}

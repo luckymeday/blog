@@ -38,3 +38,9 @@
 .pagination>li.active>a {
     background-color: #2c2828 !important;
   } */
+
+.avatar-body-area{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
