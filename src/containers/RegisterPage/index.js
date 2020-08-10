@@ -50,7 +50,7 @@ const RegisterPage = () => {
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
           <div className="text-center mb-3">
-            <h1 className="text-primary">Sign Up</h1>
+            <h1 className="">Sign Up</h1>
             <p className="lead">
               <i className="fas fa-user" /> Create Your Account
             </p>
@@ -118,10 +118,10 @@ const RegisterPage = () => {
                 Loading...
               </Button>
             ) : (
-              <Button className="btn-block" type="submit" variant="primary">
-                Register
-              </Button>
-            )}
+                <Button className="btn-block" type="submit" variant="primary">
+                  Register
+                </Button>
+              )}
 
             {/* TODO: remove fake data */}
             <Button

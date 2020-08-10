@@ -37,19 +37,19 @@ const ReviewBlog = ({
           Reaction:
         </Form.Label>
         <Col sm="8">
-          <Button variant="link" onClick={() => updateReactionRequest("haha")}>
+          <Button variant="light" style={{ marginRight: "20px" }} onClick={() => updateReactionRequest("haha")}>
             Haha: {reactions.haha}
           </Button>
-          <Button variant="link" onClick={() => updateReactionRequest("sad")}>
+          <Button variant="light" style={{ marginRight: "20px" }} onClick={() => updateReactionRequest("sad")}>
             Sad: {reactions.sad}
           </Button>
-          <Button variant="link" onClick={() => updateReactionRequest("like")}>
+          <Button variant="light" style={{ marginRight: "20px" }} onClick={() => updateReactionRequest("like")}>
             Like: {reactions.like}
           </Button>
-          <Button variant="link" onClick={() => updateReactionRequest("love")}>
+          <Button variant="light" style={{ marginRight: "20px" }} onClick={() => updateReactionRequest("love")}>
             Love: {reactions.love}
           </Button>
-          <Button variant="link" onClick={() => updateReactionRequest("angry")}>
+          <Button variant="light" style={{ marginRight: "20px" }} onClick={() => updateReactionRequest("angry")}>
             Angry: {reactions.angry}
           </Button>
         </Col>
@@ -68,7 +68,7 @@ const ReviewBlog = ({
           />
         </Col>
         {loading ? (
-          <Button variant="primary" type="button" disabled>
+          <Button variant="dark" type="button" disabled>
             <span
               className="spinner-border spinner-border-sm"
               role="status"
@@ -77,10 +77,10 @@ const ReviewBlog = ({
             Submitting...
           </Button>
         ) : (
-          <Button type="submit" disabled={!reviewText}>
-            Submit
-          </Button>
-        )}
+            <Button type="submit" disabled={!reviewText}>
+              Submit
+            </Button>
+          )}
       </Form.Group>
     </Form>
   );
