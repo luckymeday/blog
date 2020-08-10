@@ -33,8 +33,7 @@ const blogReducer = (state = initialState, action) => {
       };
 
     case types.UPDATE_BLOG_SUCCESS:
-    case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
-      return { ...state, selectedBlog: payload, loading: false };
+
     case types.GET_SELF_BLOG_REQUEST_SUCCESS:
       return { ...state, selfBlogs: payload, loading: false };
 
@@ -68,7 +67,7 @@ const blogReducer = (state = initialState, action) => {
     case types.GET_SINGLE_BLOG_REQUEST_FAILURE:
     case types.CREATE_BLOG_FAILURE:
     case types.CREATE_BLOG_SUCCESS:
-      return { ...state, loading: false, redirectTo: "/" }
+      return { ...state, loading: false, redirectTo: "/" };
     case types.UPDATE_BLOG_FAILURE:
     case types.DELETE_BLOG_FAILURE:
     case types.REACTION_REQUEST_FAILURE: //reaction
