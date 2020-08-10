@@ -30,7 +30,7 @@ const DashboardPage = () => {
   const [showModalName, setShowModalName] = useState(false)
   const [showModalAvatar, setShowModalAvatar] = useState(false)
   const user = useSelector(state => state.auth.user)
-
+  console.log("USER,",user)
   // const handleEditProfile = () => {
   //   alert("edit profile");
   //   return;

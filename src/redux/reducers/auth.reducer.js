@@ -36,6 +36,15 @@ const authReducer = (state = initialState, action) => {
         loading: false,
       };
 
+      case "change avatar":
+        console.log("IM I RUNNING")
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            avatar: payload.avatar
+          }
+        }
     case types.LOGOUT:
       return {
         ...state,

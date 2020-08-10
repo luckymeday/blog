@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { authActions } from '../redux/actions'
-import { useDispatch } from 'react-redux'
+import { authActions, dashboardActions } from '../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function UpdateAvatarModal({ showModal, setShowModal, img }) {
     const dispatch = useDispatch()
+    const user = useSelector(s => s.dashboard)
+    console.log(user)
     const [url, setUrl] = useState(img)
     const [selectedFile, setSelectedFile] = useState(null)
     const handleOnClickSubmit = () => {
-        dispatch(authActions.uploadAvatar(selectedFile))
+        dispatch(dashboardActions.uploadAvatar(selectedFile))
         setShowModal(false)
     }
     const handleChangeImage = (e) => {

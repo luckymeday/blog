@@ -28,7 +28,27 @@ const getCurrentUser = (accessToken) => async (dispatch) => {
     }
 };
 
-export const dashboardAction = {
+const uploadAvatar = (selectedFile) => async (dispatch) => {
+    console.log('Change avatar')
+    dispatch({ type: types.CHANGE_AVATAR_REQUEST, payload: null });
+    try {
+        const data = new FormData();
+        data.append("avatarUpload", selectedFile)
+        const res = await api.post("/users/me/avatar", data)
+        console.log('blogsRequest.res.data.:', res.data)
+        dispatch({
+            type: "change avatar", 
+            payload:{avatar: res.data.data,
+            }})
+        dispatch({ type: types.CHANGE_AVATAR_SUCCESS, payload: { avatar: res.data } });
+    } catch (error) {
+        dispatch({ type: types.CHANGE_AVATAR_FAILURE, payload: error });
+    }
+
+}
+
+export const dashboardActions = {
     blogsRequest,
     getCurrentUser,
+    uploadAvatar,
 }

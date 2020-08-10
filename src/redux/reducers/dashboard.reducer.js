@@ -6,22 +6,29 @@ const initialState = {
     selectedBlog: {},
     loading: false,
     total_blogs: 0,
-    total_friends: 0
+    total_friends: 0,
+    avatar: {},
 }
 
 const dashboardReducer = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
         case types.BLOG_REQUEST:
+        case types.CHANGE_AVATAR_REQUEST:
         case types.GET_CURRENT_USER_REQUEST:
             return { ...state, loading: true }
         case types.BLOG_REQUEST_SUCCESS:
             return { ...state, blogs: payload.blogs, total_blogs: payload.total_blogs }
         case types.GET_CURRENT_USER_SUCCESS:
             return { ...state, friends: payload.friends, total_friends: payload.total_friends }
+        case types.CHANGE_AVATAR_SUCCESS:
+            return {...state, avatar: payload.avatar }
         case types.BLOG_REQUEST_FAILURE:
+        case types.CHANGE_AVATAR_FAILURE:
         case types.GET_CURRENT_USER_FAILURE:
             return { ...state, loading: false }
+
+
         default:
             return state;
     }
